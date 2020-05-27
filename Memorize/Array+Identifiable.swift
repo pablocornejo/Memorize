@@ -9,7 +9,7 @@
 import Foundation
 
 extension Array where Element: Identifiable {
-    func firstIndex(matching: Element) -> Int {
-        firstIndex { $0.id == matching.id } ?? 0
+    func firstIndex(matching: Element) -> Int? {
+        firstIndex { $0.id == matching.id }
     }
 }
