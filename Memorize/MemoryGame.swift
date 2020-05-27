@@ -19,16 +19,13 @@ struct MemoryGame<CardContent> {
             cards.append(Card(content: content, id: pairIndex*2))
             cards.append(Card(content: content, id: pairIndex*2+1))
         }
+        cards.shuffle()
     }
     
     mutating func choose(card: Card) {
         print("Card chosen: \(card)")
-        let chosenIndex = index(of: card)
+        let chosenIndex = cards.firstIndex(matching: card)
         cards[chosenIndex].isFaceUp.toggle()
-    }
-    
-    func index(of card: Card) -> Int {
-        cards.firstIndex { $0.id == card.id } ?? 0
     }
     
     struct Card: Identifiable {

@@ -36,9 +36,3 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
             .position(layout.location(ofItemAt: index))
     }
 }
-
-extension Array where Element: Identifiable {
-    func firstIndex(matching: Element) -> Int {
-        firstIndex { $0.id == matching.id } ?? 0
-    }
-}
