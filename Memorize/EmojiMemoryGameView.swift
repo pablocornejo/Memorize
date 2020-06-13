@@ -16,14 +16,20 @@ struct EmojiMemoryGameView: View {
             Grid(viewModel.cards) { card in
                 CardView(card: card)
                     .onTapGesture {
-                        self.viewModel.choose(card: card)
+                        withAnimation {
+                            self.viewModel.choose(card: card)
+                        }
                 }
                 .padding()
             }
             .padding()
             .foregroundColor(Color.orange)
             
-            Button(action: viewModel.resetGame) {
+            Button(action: {
+                withAnimation {
+                    self.viewModel.resetGame()
+                }
+            }) {
                 Text("New Game")
             }
         }
@@ -52,6 +58,7 @@ struct CardView: View {
                     .animation(card.isMatched ? Animation.linear(duration: 1).repeatForever(autoreverses: false) : .default)
             }
             .cardify(isFaceUp: card.isFaceUp)
+            .transition(.scale)
         }
     }
     
